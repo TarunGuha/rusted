@@ -1,11 +1,14 @@
 use crate::services::auth::enums::ResourceMethod;
 
 use serde::{Deserialize, Serialize};
+use validator::Validate;
 
-#[derive(Deserialize)]
+#[derive(Deserialize, Validate)]
 pub struct AuthorizeRequest {
+    #[validate(length(min = 1))]
     pub resource_name: String,
     pub resource_method: ResourceMethod,
+    #[validate(length(min = 1))]
     pub resource_service: String,
     pub auth_token: Option<String>,
 }
