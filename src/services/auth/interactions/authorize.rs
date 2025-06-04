@@ -15,6 +15,20 @@ impl Authorize {
             .map_err(|err| HttpResponse::UnprocessableEntity().json(err))
     }
 
+    pub fn fetch_resource(
+        &self,
+        resource_method: &str,
+        resource_name: &str,
+        resource_service: &str,
+    ) -> Result<(), HttpResponse> {
+        let resource_key: String = format!(
+            "auth_resource_{}_{}_{}",
+            resource_method, resource_name, resource_service
+        );
+
+        return Ok(());
+    }
+
     pub fn execute(&self, request: &AuthorizeRequest) -> Result<AuthorizeResponse, HttpResponse> {
         self.set_request(request)?;
 
